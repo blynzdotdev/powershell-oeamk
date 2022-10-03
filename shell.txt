@@ -1,0 +1,119 @@
+teglalap.ps1 
+[be: sor oszlop változo, ki: terület, kerület]
+
+$sor=6
+$oszlop=8
+$terulet=$sor*$oszlop
+$kerulet=2*($sor+$oszlop)
+for($i=1;$i -le $sor;$i++)
+{
+for($j=1;$j -le $oszlop;$j++)
+{
+  write-host -nonewline "#"
+}
+write-host
+}
+Write-host "A téglalap területe:" $terulet
+Write-host "A téglalap kerülete:" $kerulet
+
+----------------------------------------------------
+
+ar.ps1
+
+Get-ChildItem c:\windows -recurse | Where {$_.creationtime -gt "2011.01.01"} | out-file c:\temp\windowsfajlok.txt
+
+$szavak=Get-Content c:\temp\windowsfajlok.txt
+$i=0;
+while ($i -lt $szavak.length) {
+ if ($szavak[$i] -match "^-ar--"){
+        write-host ($szavak[$i]) 
+ }
+ $i++
+
+----------------------------------------------------
+
+gyok2.ps1
+
+[float]$a=read-host "Hányadik számot írjam ki?"
+if ($a -eq 1) 
+   {write-host "$a. elem: 1"}
+else 
+ {
+  $e=1
+  for($i=1;$i -le $a-1;$i++)
+   {
+     $gyok=($e+(2/$e))/2
+     $e=$gyok
+  }
+  write-host "$a. elem: $gyok"
+ }
+
+-----------------------------------------------------
+
+tribonacci
+trib.ps1
+
+[float]$a=read-host "Hányadik Tribonacci számot írjam ki?"
+
+switch($a)
+{
+1 {write-host "$a. elem: 1"; break}
+2 {write-host "$a. elem: 1"; break}
+3 {write-host "$a. elem: 2"; break}
+default {
+	$e=1
+	$k=1
+	$u=2
+		 for($i=1;$i -le $a-3;$i++)
+			  {
+			   $trib=$e+$k+$u
+			   $e=$k
+			   $k=$u
+			   $u=$trib
+			  }
+		  write-host "$a. elem: $trib"
+    }
+}
+
+-----------------------------------------------------
+
+ajto.ps1
+
+$méret=read-host "Kérem az ajtó méretét!"
+$szín=read-host "Kérem a színét (angol megnevezés)!"
+
+for($i=1;$i -le $méret;$i++)
+{
+
+for($j=1;$j -le $méret;$j++)
+{
+
+switch ($i)
+{
+1 {$karakter="=";break;}
+$méret {$karakter="=";break;}
+
+default {
+        switch ($j)
+        {
+            1 {$karakter="|";break;}
+            $méret {$karakter="|";break;}
+            default {$karakter=" ";
+                  }
+        }
+        }
+}
+write-host -nonewline $karakter  -foregroundcolor $szín
+}
+write-host
+}
+write-host "Ajtó mérete:  $méret"
+
+
+------------------------------------------------------
+
+
+
+
+
+
